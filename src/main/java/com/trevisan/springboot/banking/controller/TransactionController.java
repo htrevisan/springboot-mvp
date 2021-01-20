@@ -29,7 +29,7 @@ import com.trevisan.springboot.banking.repository.TransactionRepository;
 public class TransactionController {
 	
 	private final TransactionRepository repository;
-
+	
 	TransactionController(TransactionRepository repository) {
 		this.repository = repository;
 	}
@@ -53,4 +53,5 @@ public class TransactionController {
 				new TransactionSpecification(new SearchCriteria("account", ":", account));
 		return repository.findAll(spec);
 	}
+	
 }

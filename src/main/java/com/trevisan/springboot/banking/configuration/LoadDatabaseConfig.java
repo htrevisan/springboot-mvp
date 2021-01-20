@@ -24,14 +24,13 @@ import com.trevisan.springboot.banking.repository.TransactionRepository;
 class LoadDatabaseConfig {
 
 	private static final Logger log = LoggerFactory.getLogger(LoadDatabaseConfig.class);
-	Account firstAccount = new Account(1l, 1l, 200.0f);
-	Account secondAccount = new Account(2l, 1l, 5750.15f);
+	Account firstAccount = new Account(1l, 1l, 0.0f);
+	
 	@Bean @Order(1)
 	CommandLineRunner populateAccounts(AccountRepository repository) {
 
 		return args -> {
 			log.info("Preloading " + repository.save(firstAccount));
-			log.info("Preloading " + repository.save(secondAccount));
 		};
 	}
 
@@ -51,10 +50,6 @@ class LoadDatabaseConfig {
 			log.info("Preloading " + repository.save(new Transaction(2l, new Date(), 200l, firstAccount)));							
 			log.info("Preloading " + repository.save(new Transaction(3l, new Date(), -23l, firstAccount)));
 			log.info("Preloading " + repository.save(new Transaction(4l, new Date(),  92l, firstAccount)));
-			log.info("Preloading " + repository.save(new Transaction(5l, new Date(),  27l, secondAccount)));							
-			log.info("Preloading " + repository.save(new Transaction(6l, new Date(), -71l, secondAccount)));
-			log.info("Preloading " + repository.save(new Transaction(7l, new Date(), 710l, secondAccount)));
-			log.info("Preloading " + repository.save(new Transaction(8l, new Date(),   11, secondAccount)));
 		};
 	}
 }

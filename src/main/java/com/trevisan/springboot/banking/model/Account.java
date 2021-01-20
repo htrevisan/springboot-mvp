@@ -1,10 +1,14 @@
 package com.trevisan.springboot.banking.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Formula;
 
 /**
  * @author Harlem Trevisan 
@@ -14,11 +18,13 @@ import javax.persistence.Id;
 public class Account {
 	private @Id @GeneratedValue Long id; // JPA annotation que define uma PK que será gerada automaticamente
 	private long number;
-	private float balance;
 	
-//	@OneToMany(targetEntity=Transaction.class)  // Define a cardinalidade "um pra muitos" com a entidade Transaction 
-//	private List<Transaction> transactionList = new ArrayList<>(); 
+	@Formula("SELECT SUM(t.value) FROM Account a join Transaction t")	
+	private Float balance;
 	
+	@OneToMany()  // Define a cardinalidade "um pra muitos" com a entidade Transaction
+	private List<Transaction> transactions;
+		
 	public Account() { }
 	
 	public Account(long id, long number, float balance) {
@@ -63,12 +69,20 @@ public class Account {
 		this.number = number;
 	}
 
-	public float getBalance() {
+	public Float getBalance() {
 		return balance;
 	}
 
-	public void setBalance(float balance) {
+	public void setBalance(Float balance) {
 		this.balance = balance;
+	}
+
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
 	}
 		
 }

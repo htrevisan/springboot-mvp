@@ -1,5 +1,8 @@
 package com.trevisan.springboot.banking.configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.hateoas.client.LinkDiscoverer;
@@ -8,9 +11,6 @@ import org.springframework.hateoas.mediatype.collectionjson.CollectionJsonLinkDi
 import org.springframework.plugin.core.SimplePluginRegistry;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 @EnableSwagger2
@@ -22,4 +22,5 @@ public class SwaggerConfig {
         plugins.add(new CollectionJsonLinkDiscoverer());
         return new LinkDiscoverers(SimplePluginRegistry.create(plugins));
     }
+        
 }
