@@ -1,0 +1,2 @@
+# Atende ao requisito : "As APIs devem ser expostas no ​ swagger​ , com acesso à interface gráfica do mesmo em​ localhost:8080/swagger-ui.html"
+configUrl=localhost:8080/swagger-ui.html
