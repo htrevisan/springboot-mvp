@@ -20,10 +20,17 @@ import com.trevisan.springboot.banking.ObjectNotFoundException;
 import com.trevisan.springboot.banking.model.Account;
 import com.trevisan.springboot.banking.repository.AccountRepository;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
+import springfox.documentation.annotations.ApiIgnore;
+
 /**
  * @author Harlem Trevisan 
  */
 
+@Api(value="Conjunto de operações relacionadas à conta.")
 @RestController
 public class AccountController {
 	
@@ -33,6 +40,7 @@ public class AccountController {
 		this.repository = repository;
 	}
 
+	@ApiIgnore
 	@GetMapping("/api/accounts")
 	CollectionModel<EntityModel<Account>> all() {
 
@@ -45,11 +53,13 @@ public class AccountController {
 		return CollectionModel.of(accounts, linkTo(methodOn(AccountController.class).all()).withSelfRel());
 	}
 
+	@ApiOperation(value="Cria uma nova conta.")
 	@PostMapping("/api/accounts")
 	Account newAccount(@RequestBody Account newAccount) {
 		return repository.save(newAccount);
 	}
-
+	
+	@ApiOperation(value="Retorna os dados da conta correspondente ao identificador informado.")
 	@GetMapping("/api/accounts/{id}")
 	EntityModel<Account> one(@PathVariable Long id) {
 
@@ -61,6 +71,7 @@ public class AccountController {
 				linkTo(methodOn(AccountController.class).all()).withRel("accounts"));
 	}
 
+	@ApiOperation(value="Atualiza dados de uma conta existente.")
 	@PutMapping("/api/accounts/{id}")
 	Account replaceAccount(@RequestBody Account newAccount, @PathVariable Long id) {
 
@@ -76,6 +87,7 @@ public class AccountController {
 				});
 	}
 	
+	@ApiOperation(value="Retorna o saldo da conta conforme o identificador informado.")
 	@GetMapping("/api/accounts/{id}/balance")
 	Float balance(@PathVariable Long id) {
 
@@ -84,7 +96,8 @@ public class AccountController {
 		
 		return account.getBalance();
 	}
-
+	
+	@ApiIgnore
 	@DeleteMapping("/api/accounts/{id}")
 	void deleteAccount(@PathVariable Long id) {
 		repository.deleteById(id);
