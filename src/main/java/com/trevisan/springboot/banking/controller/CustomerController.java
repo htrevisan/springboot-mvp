@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trevisan.springboot.banking.exception.ObjectNotFoundException;
-import com.trevisan.springboot.banking.model.Account;
 import com.trevisan.springboot.banking.model.Customer;
 import com.trevisan.springboot.banking.repository.CustomerRepository;
 

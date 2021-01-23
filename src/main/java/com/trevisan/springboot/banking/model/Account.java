@@ -1,5 +1,6 @@
 package com.trevisan.springboot.banking.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,14 +21,14 @@ public class Account {
 	private long number;
 	
 	@Formula("SELECT SUM(t.value) FROM Account a join Transaction t")	
-	private Float balance;
+	private BigDecimal balance;
 	
 	@OneToMany()  // Define a cardinalidade "um pra muitos" com a entidade Transaction
 	private List<Transaction> transactions;
 		
 	public Account() { }
 	
-	public Account(long id, long number, float balance) {
+	public Account(long id, long number, BigDecimal balance) {
 		super();
 		this.id = id;
 		this.number = number;
@@ -69,11 +70,11 @@ public class Account {
 		this.number = number;
 	}
 
-	public Float getBalance() {
+	public BigDecimal getBalance() {
 		return balance;
 	}
 
-	public void setBalance(Float balance) {
+	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
 

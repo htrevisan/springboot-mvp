@@ -1,5 +1,6 @@
 package com.trevisan.springboot.banking.configuration;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ import com.trevisan.springboot.banking.repository.TransactionRepository;
 class LoadDatabaseConfig {
 
 	private static final Logger log = LoggerFactory.getLogger(LoadDatabaseConfig.class);
-	Account firstAccount = new Account(1l, 1l, 0.0f);
+	Account firstAccount = new Account(1l, 1l, new BigDecimal(0));
 	
 	@Bean @Order(1)
 	CommandLineRunner populateAccounts(AccountRepository repository) {

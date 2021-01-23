@@ -3,6 +3,7 @@ package com.trevisan.springboot.banking.controller;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -87,7 +88,7 @@ public class AccountController {
 	
 	@ApiOperation(value="Retorna o saldo da conta conforme o identificador informado.")
 	@GetMapping("/api/accounts/{id}/balance")
-	Float balance(@PathVariable Long id) {
+	BigDecimal balance(@PathVariable Long id) {
 
 		Account account = repository.findById(id)
 				.orElseThrow(() -> new ObjectNotFoundException("Account", id));
