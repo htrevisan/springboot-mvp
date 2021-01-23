@@ -21,8 +21,6 @@ import com.trevisan.springboot.banking.model.Account;
 import com.trevisan.springboot.banking.repository.AccountRepository;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import springfox.documentation.annotations.ApiIgnore;
 

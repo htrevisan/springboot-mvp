@@ -34,7 +34,7 @@ public class TransactionController {
 		this.repository = repository;
 	}
 
-	@GetMapping("/Alltransactions")
+	@GetMapping("/all-transactions")
 	CollectionModel<EntityModel<Transaction>> all() {
 		List<EntityModel<Transaction>> transactions = repository.findAll().stream()
 				.map(transaction -> EntityModel.of(transaction,
