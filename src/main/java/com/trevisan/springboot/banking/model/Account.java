@@ -2,7 +2,6 @@ package com.trevisan.springboot.banking.model;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,79 +10,32 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Formula;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @author Harlem Trevisan 
  */
 
+@Data  // Getters and setters, equals(), hashCode() e toString() gerados com esta annotation - Lombok
+@AllArgsConstructor // Construtor com todos os argumentos da entidade - Lombok
+@NoArgsConstructor  // Construtor sem argumentos - Lombok
 @Entity	// JPA annotation que diz que a classe é uma entidade e será persistida em uma tabela
 public class Account {
+	
 	private @Id @GeneratedValue Long id; // JPA annotation que define uma PK que será gerada automaticamente
-	private long number;
+	private Long number;
 	
 	@Formula("SELECT SUM(t.value) FROM Account a join Transaction t")	
 	private BigDecimal balance;
 	
 	@OneToMany()  // Define a cardinalidade "um pra muitos" com a entidade Transaction
-	private List<Transaction> transactions;
-		
-	public Account() { }
-	
-	public Account(long id, long number, BigDecimal balance) {
-		super();
+	private List<Transaction> transactions;	
+
+	public Account(Long id, Long number, BigDecimal balance) {
 		this.id = id;
 		this.number = number;
 		this.balance = balance;
 	}
-	
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Account account = (Account) o;
-		return Objects.equals(id, account.id) &&
-			Objects.equals(number, account.number) &&
-			Objects.equals(balance, account.balance);
-	}
-	
-	@Override
-	public String toString() {
-		return "Account{" +
-			"id=" + id +
-			", number='" + number + '\'' +
-			", balance='" + balance + '\'' +		
-			'}';
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public long getNumber() {
-		return number;
-	}
-
-	public void setNumber(long number) {
-		this.number = number;
-	}
-
-	public BigDecimal getBalance() {
-		return balance;
-	}
-
-	public void setBalance(BigDecimal balance) {
-		this.balance = balance;
-	}
-
-	public List<Transaction> getTransactions() {
-		return transactions;
-	}
-
-	public void setTransactions(List<Transaction> transactions) {
-		this.transactions = transactions;
-	}
-		
 }

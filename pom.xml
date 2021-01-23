@@ -32,7 +32,13 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
-		</dependency>		
+		</dependency>
+		<!-- Vamos usar o Lombok, uma biblioteca Java focada em produtividade e redução de código boilerplate -->
+		<dependency>
+        	<groupId>org.projectlombok</groupId>
+        	<artifactId>lombok</artifactId>
+        	<optional>true</optional>
+    	</dependency>				
 		<!-- tag::spring-hateoas[] -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
