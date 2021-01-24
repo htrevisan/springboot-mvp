@@ -2,18 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.4.2</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>	
 	</parent>
+	
+	<description>Simple Banking App with APIs and Spring Boot</description>
 	<groupId>com.trevisan.springboot.banking</groupId>
 	<artifactId>springboot-mvp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot-mvp</name>
-	<description>Simple Banking App with APIs and Spring Boot</description>
-
+	
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -27,24 +29,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency> 
-		<!-- Atende ao requisito : "Deve ser utilizado o banco em memória ​ H2" -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- Vamos usar o Lombok, uma biblioteca Java focada em produtividade e redução de código boilerplate -->
 		<dependency>
         	<groupId>org.projectlombok</groupId>
         	<artifactId>lombok</artifactId>
         	<optional>true</optional>
     	</dependency>				
-		<!-- tag::spring-hateoas[] -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>		
-		<!-- Atende ao requisito : "As APIs devem ser expostas no Swagger" -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
